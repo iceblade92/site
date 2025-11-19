@@ -52,7 +52,6 @@ def text_node_to_html_node(text_node):
 def split_nodes_delimiter(old_nodes, delimiter, text_type):
     string_list = []
     for node in old_nodes:
-
         if node.text_type != TextType.TEXT:
             string_list.append(node)
             continue
@@ -125,3 +124,23 @@ def split_nodes_link(old_nodes):
         if original_text != "":
             new_nodes.append(TextNode(original_text, TextType.TEXT))
     return new_nodes
+
+def text_to_textnodes(text):
+    nodes = [TextNode(text, TextType.TEXT)]
+    nodes = split_nodes_delimiter(nodes, "**", TextType.BOLD)
+    nodes = split_nodes_delimiter(nodes, "_", TextType.ITALIC)
+    nodes = split_nodes_delimiter(nodes, "`", TextType.CODE)
+    nodes = split_nodes_image(nodes)
+    nodes = split_nodes_link(nodes)
+    return nodes
+
+def markdown_to_blocks(markdown):
+    markdown_list = []
+    markdown_split = markdown.split("\n\n")
+    for mark in markdown_split:
+        clean_mark = mark.strip()
+        if clean_mark == "":
+            continue
+        else:
+            markdown_list.append(clean_mark)
+    return markdown_list
