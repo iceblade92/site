@@ -1,5 +1,6 @@
-# Files
+# Files and dir
 __pycache__/
+public
 
 # Virtual environments
 .venv
