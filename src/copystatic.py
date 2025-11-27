@@ -4,8 +4,8 @@ import shutil
 
 
 def delete_dir():
-    if os.path.exists("public"):
-        shutil.rmtree("public")
+    if os.path.exists("docs"):
+        shutil.rmtree("docs")
 
 def copy_files_recursive(source_dir_path, dest_dir_path):
     if not os.path.exists(dest_dir_path):
